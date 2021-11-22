@@ -1,5 +1,6 @@
 import reader from './reader';
 import parser from './parser';
+import read from "./reader";
 
 /** @module GameSavingLoader
  * Class creating GameSavingLoader.
@@ -17,7 +18,9 @@ export default class GameSavingLoader {
    * @param {ArrayBuffer} buffer - ArrayBuffer for further conversion
    */
   load(buffer) {
-    this.buffer = new Uint16Array(buffer);
+    this.buffer = new Promise((resolve, reject) => {
+      reader.read();
+    });
   }
 
   /**
