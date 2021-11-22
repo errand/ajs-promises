@@ -1,27 +1,27 @@
-import reader from './reader';
-import parser from './parser';
-import read from "./reader";
+import read from './reader';
+import json from './parser';
+import GameSaving from './GameSaving';
 
 /** @module GameSavingLoader
  * Class creating GameSavingLoader.
  */
 export default class GameSavingLoader {
   /**
-   * Create a point.
-   */
-  constructor() {
-    this.buffer = '';
-  }
-
-  /**
    * Load buffer into the memory as Uint16Array
    * @param {ArrayBuffer} buffer - ArrayBuffer for further conversion
    */
-  load(buffer) {
-    this.buffer = new Promise((resolve, reject) => {
-      reader.read();
-    });
+  static load() {
+    return read()
+      .then((response) => json(response))
+      .then((response) => console.log(response))
+      .then((response) => new GameSaving(JSON.parse(response)));
   }
+
+  /* load() {
+    const data = read(); // возвращается Promise!
+    const value = json(data); // возвращается Promise!
+    return value;
+  } */
 
   /**
    * Converts Uint16Array into string using String.fromCharCode
