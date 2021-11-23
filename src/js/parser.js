@@ -1,5 +1,6 @@
 /** @module json
- * Format ArrayBuffer to JSON
+ * Format ArrayBuffer to string
+ * @returns {Promise} Promise object represents conversion to String from ArrayBuffer
  */
 export default function json(data) {
   return new Promise((resolve, reject) => {
